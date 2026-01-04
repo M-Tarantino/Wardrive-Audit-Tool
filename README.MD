@@ -1,4 +1,4 @@
-# 🛡️ Wardrive Audit Tool (v18.0)
+# 🛡️ Wardrive Audit Tool
 
 A professional-grade Python tool designed to transform raw wireless survey data into actionable security intelligence. This tool parses WiGLE CSV exports to identify infrastructure vulnerabilities, analyze RF spectrum congestion, and visualize geographical distribution.
 
@@ -20,7 +20,7 @@ As part of my transition into the IT & Cybersecurity field, I developed this imp
 
 ### 2. Installation
 Clone this repository to your local machine or Termux environment:
-git clone https://github.com/YOUR_USERNAME/WardriveAudit.git
+git clone https://github.com/M-Tarantino/Wardrive-Audit-Tool/
 cd WardriveAudit
 
 ### 3. Running the Audit
