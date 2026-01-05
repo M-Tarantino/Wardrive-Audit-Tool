@@ -17,6 +17,7 @@ As part of my transition into the IT & Cybersecurity field, I developed this imp
 ### 1. Prerequisites
 - Python 3.x
 - An active internet connection for the initial setup (OUI database download) and geo-mapping.
+- No external dependencies required (Standard Library only)
 
 ### 2. Installation
 Clone this repository to your local machine or Termux environment:
@@ -33,6 +34,8 @@ The tool generates a detailed Markdown report (Wardriving_Audit_YYYYMMDD_HHMM.md
 - Aggregated vendor inventory.
 - Security risk & encryption tables.
 - IoT (BLE) and Cellular (LTE/5G) intelligence.
+
+[View a Sample Audit Report here](Wardriving_Audit_20260104_2215.md)
 
 ## 📊 Sample Insights
 In a recent audit covering 207 km, this tool successfully:
