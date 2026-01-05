@@ -8,7 +8,7 @@ class Color:
     CLEAR = '\033[K'
 
 def calculate_distance(lat1, lon1, lat2, lon2):
-    R = 6371.0 # Radius der Erde in km
+    R = 6371.0 # Earth radius in km
     dlat = math.radians(lat2 - lat1)
     dlon = math.radians(lon2 - lon1)
     a = math.sin(dlat / 2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2)**2
@@ -19,7 +19,7 @@ def get_oui_dict():
     cache_file = "oui_database.txt"
     if not os.path.exists(cache_file):
         try:
-            url = "https://standards-oui.ieee.org/oui/oui.txt"
+            url  = "https://standards-oui.ieee.org/oui/oui.txt"
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req) as res:
                 data = res.read().decode('utf-8', errors='ignore')
@@ -73,7 +73,7 @@ def run_master_audit(file_path):
             stats['total'] += 1
             rtype = row.get('Type', '')
             
-            # Zeit erfassen für Punkt 5
+            # Record time for point 5
             row_ts = row.get('FirstSeen', '')
             if row_ts:
                 if not stats['first_ts']: stats['first_ts'] = row_ts
@@ -103,7 +103,7 @@ def run_master_audit(file_path):
             elif rtype == 'BT': stats['bt'] += 1
             elif rtype in ['GSM', 'LTE', 'NR', 'CDMA']: stats['cell'] += 1
 
-    # Distanz-Berechnung
+    # Distance calculation
     total_dist = 0
     if len(stats['coords']) > 1:
         for j in range(len(stats['coords']) - 1):
@@ -113,14 +113,14 @@ def run_master_audit(file_path):
     confirm = input(f"{Color.YELLOW}Generate Advanced Report? (y/n): {Color.END}").lower()
     if confirm != 'y': return
 
-    # OUI Aggregation
+    # OUI aggregation
     oui_db = get_oui_dict()
     aggregated_vendors = {}
     for oui, count in stats['vendors'].items():
         brand = oui_db.get(oui, "Unknown").split()[0].replace(',', '').strip()
         aggregated_vendors[brand] = aggregated_vendors.get(brand, 0) + count
 
-    # Geo Mapping
+    # Geo mapping
     final_cities = {}
     spinner = itertools.cycle(['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'])
     try:
@@ -131,7 +131,7 @@ def run_master_audit(file_path):
             final_cities[city] = final_cities.get(city, 0) + count
     except KeyboardInterrupt: pass
 
-    # Report Erstellung
+    # Report generation
     ts_file = datetime.now().strftime("%Y%m%d_%H%M")
     fn = f"Wardriving_Audit_{ts_file}.md"
     
